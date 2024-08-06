@@ -26,34 +26,29 @@ document.addEventListener('DOMContentLoaded', (event) => {
             "EmperiaCode": inputData
         };
 
-        try {
-            // Gửi dữ liệu đến API
-            const response = await fetch('https://gate.rx-vietnamshows.com/vip-check', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            });
+        // Gửi dữ liệu đến API
+        const response = await fetch('https://gate.rx-vietnamshows.com/vip-check', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
 
-            const result = await response.json();
-            console.log('Kết quả trả về từ API:', result.data.result);
-            const enData = result.data.result;
+        const result = await response.json();
+        console.log('Kết quả trả về từ API:', result.data.result);
+        const enData = result.data.result;
 
-            if (enData && enData !== 0) {
-                audioNotVIP.play();
-            }
-
-            if (response.ok) {
-                // Nếu phản hồi thành công, hiển thị popup với ảnh
-                openPopup(textValue);
-            } else {
-                console.error('Phản hồi không thành công:', response.statusText);
-                audioFalse.play();
-            }
-        } catch (error) {
-            console.error('Lỗi khi gọi API:', error);
+        if (enData && enData !== 0) {
             audioNotVIP.play();
+        }
+
+        if (response.ok) {
+            // Nếu phản hồi thành công, hiển thị popup với ảnh
+            openPopup(textValue);
+        } else {
+            console.error('Phản hồi không thành công:', response.statusText);
+            audioFalse.play();
         }
     }
 
