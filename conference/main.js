@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const audioFalse = new Audio('../voice-3.mp3');
 
     // Đặt tốc độ phát của voice-1 nhanh hơn
-    audioWellcome.playbackRate = 1.5; // Ví dụ: phát nhanh hơn 1.5 lần
+    audioWellcome.playbackRate = 1.25; // Ví dụ: phát nhanh hơn 1.5 lần
 
     // Lấy phần tử input
     const inputElement = document.getElementById('inputData');
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         console.log(payload);
 
         // Gửi dữ liệu đến API
-        fetch('http://localhost:8080/cof-check', {
+        fetch('https://gate.rx-vietnamshows.com/cof-check', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
