@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         // Gửi dữ liệu đến API
         const response = await fetch('https://gate.rx-vietnamshows.com/vip-check', {
             method: 'POST',
+            mode: 'no-cors', // Thêm chế độ này
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -37,7 +38,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         const result = await response.json();
         console.log('Kết quả trả về từ API:', result.data.result);
-        const enData = result.data.result;
+        const textValue = result.data.result;
 
         if (enData && enData !== 0) {
             audioNotVIP.play();
