@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conference Verification Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .overlay {
+            position: fixed;
+            display: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 2;
+        }
+
+        .popup img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="h-screen bg-gray-100 flex items-center justify-center">
+        <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-1/2">
+            <h1 class="text-center text-4xl font-bold mb-6 text-orange-500">Conference Verification Portal</h1>
+            <form id="dataForm">
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-bold mb-2" for="inputData">
+                        Emperial Code
+                    </label>
+                    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="inputData" required autofocus placeholder="Add your code here" >
+                </div>
+                <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" type="submit">
+                    Gửi
+                </button>
+            </form>
+        </div>
+    </div>
+    <div id="overlay" class="overlay"></div>
+    <div id="popup" class="popup">
+        <img id="popupImage" src="" alt="Popup Image">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const inputElement = document.getElementById('inputData');
+
+            // Lắng nghe sự kiện 'input'
+            inputElement.addEventListener('input', (event) => {
+                // Phát âm thanh
+                document.getElementById('popupImage').src = 'https://port.rx-vietnamshows.com/barcode/?bcid=code39&text=88888888&includetext&guardwhitespace';
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('popup').style.display = 'block';
+
+                // Đặt timeout để tự đóng popup sau 1 giây
+                setTimeout(closePopup, 1000);
+
+                // Xóa dữ liệu trong ô input
+                document.getElementById('inputData').value = '';
+            });
+        });
+        function closePopup() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('popup').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
